@@ -1,0 +1,315 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800;12..96,900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html {
+  background: #0a0a0a;
+  color-scheme: dark;
+}
+
+body {
+  background: #0a0a0a;
+  color: #f5f1e8;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #d4ff3d;
+  color: #0a0a0a;
+}
+
+/* Grain overlay for atmosphere */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+/* Scroll reveal */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Heading sizing */
+.h-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  font-variation-settings: "wdth" 85;
+}
+
+.h-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #7a7570;
+}
+
+/* Button */
+.btn-wham {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  background: #d4ff3d;
+  color: #0a0a0a;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variation-settings: "wdth" 85;
+  letter-spacing: -0.02em;
+  padding: 1rem 1.75rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: transform 0.2s, background 0.2s;
+  border: none;
+}
+
+.btn-wham:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #f5f1e8;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  background: transparent;
+  color: #f5f1e8;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variation-settings: "wdth" 85;
+  letter-spacing: -0.02em;
+  padding: 1rem 1.75rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border: 1px solid rgba(245, 241, 232, 0.2);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btn-ghost:hover {
+  border-color: #d4ff3d;
+  background: rgba(212, 255, 61, 0.06);
+}
+
+/* Card hover */
+.card-raise {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+}
+
+.card-raise:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 255, 61, 0.4);
+}
+
+/* Sticker mock */
+.sticker-mock {
+  aspect-ratio: 1;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.sticker-mock::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), transparent 50%);
+}
+
+/* Blog prose styles */
+.prose-whamr {
+  color: #b8b3aa;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.prose-whamr > * + * {
+  margin-top: 1.5rem;
+}
+
+.prose-whamr h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variation-settings: "wdth" 85;
+  letter-spacing: -0.03em;
+  color: #f5f1e8;
+  font-size: 2.25rem;
+  line-height: 1.1;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.prose-whamr h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variation-settings: "wdth" 85;
+  letter-spacing: -0.02em;
+  color: #f5f1e8;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-whamr p {
+  color: #b8b3aa;
+}
+
+.prose-whamr strong {
+  color: #f5f1e8;
+  font-weight: 700;
+}
+
+.prose-whamr em {
+  color: #d4ff3d;
+  font-style: italic;
+}
+
+.prose-whamr a {
+  color: #d4ff3d;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.prose-whamr a:hover {
+  color: #f5f1e8;
+}
+
+.prose-whamr ul,
+.prose-whamr ol {
+  padding-left: 1.5rem;
+  color: #b8b3aa;
+}
+
+.prose-whamr ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.prose-whamr ul > li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-top: 0.75rem;
+}
+
+.prose-whamr ul > li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #d4ff3d;
+  font-family: var(--font-mono);
+}
+
+.prose-whamr ol {
+  list-style: none;
+  counter-reset: item;
+  padding-left: 0;
+}
+
+.prose-whamr ol > li {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-top: 0.75rem;
+  counter-increment: item;
+}
+
+.prose-whamr ol > li::before {
+  content: counter(item, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  color: #d4ff3d;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  top: 0.25rem;
+}
+
+.prose-whamr blockquote {
+  border-left: 3px solid #d4ff3d;
+  padding-left: 1.5rem;
+  margin-left: 0;
+  color: #f5f1e8;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.prose-whamr code {
+  background: #141414;
+  color: #d4ff3d;
+  padding: 0.125rem 0.375rem;
+  border: 1px solid rgba(245, 241, 232, 0.08);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.prose-whamr pre {
+  background: #141414;
+  border: 1px solid rgba(245, 241, 232, 0.08);
+  padding: 1.5rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: #f5f1e8;
+  margin-top: 1.5rem;
+}
+
+.prose-whamr pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+
+.prose-whamr hr {
+  border: 0;
+  height: 1px;
+  background: rgba(245, 241, 232, 0.08);
+  margin: 3rem 0;
+}
